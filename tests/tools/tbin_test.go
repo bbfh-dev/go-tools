@@ -18,6 +18,8 @@ func TestWriteUint8(t *testing.T) {
 	result, err := tbin.Uint8(&buf)
 	assert.NilError(t, err)
 	assert.Equal(t, result, uint8(69))
+	_, err = buf.ReadByte()
+	assert.ErrorType(t, err, io.EOF)
 }
 
 func TestWriteUint16(t *testing.T) {
@@ -28,6 +30,8 @@ func TestWriteUint16(t *testing.T) {
 	result, err := tbin.Uint16(&buf)
 	assert.NilError(t, err)
 	assert.Equal(t, result, uint16(6969))
+	_, err = buf.ReadByte()
+	assert.ErrorType(t, err, io.EOF)
 }
 
 func TestWriteUint32(t *testing.T) {
@@ -38,6 +42,8 @@ func TestWriteUint32(t *testing.T) {
 	result, err := tbin.Uint32(&buf)
 	assert.NilError(t, err)
 	assert.Equal(t, result, uint32(69696969))
+	_, err = buf.ReadByte()
+	assert.ErrorType(t, err, io.EOF)
 }
 
 func TestWriteUint64(t *testing.T) {
@@ -48,6 +54,8 @@ func TestWriteUint64(t *testing.T) {
 	result, err := tbin.Uint64(&buf)
 	assert.NilError(t, err)
 	assert.Equal(t, result, uint64(6969696969696969))
+	_, err = buf.ReadByte()
+	assert.ErrorType(t, err, io.EOF)
 }
 
 func TestWriteTuxleString(t *testing.T) {
