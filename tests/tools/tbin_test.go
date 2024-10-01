@@ -3,6 +3,7 @@ package tools_test
 import (
 	"bufio"
 	"bytes"
+	"io"
 	"testing"
 
 	"github.com/bbfh-dev/go-tools/tools/tbin"
@@ -58,4 +59,6 @@ func TestWriteTuxleString(t *testing.T) {
 	result, err := tbin.TuxleString(reader)
 	assert.NilError(t, err)
 	assert.Equal(t, result, "Hello World!\x00")
+	_, err = reader.ReadByte()
+	assert.ErrorType(t, err, io.EOF)
 }
