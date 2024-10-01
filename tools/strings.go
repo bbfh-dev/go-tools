@@ -31,3 +31,12 @@ func FormatMap(in map[string]string, format formatFunc) []string {
 
 	return out
 }
+
+// Separates map into its keys and values
+func SeparateMap(in map[string]string) (keys []string, values []string) {
+	for key, value := range in {
+		keys = append(keys, key)
+		values = append(values, value)
+	}
+	return keys, values
+}
