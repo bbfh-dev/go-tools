@@ -1,8 +1,8 @@
-package tools
+package tslice
 
-func SlicesDiff[T string | int | bool](a, b []T) []T {
+func Diff[T comparable](a, b []T) []T {
 	if len(a) < len(b) {
-		return SlicesDiff(b, a)
+		return Diff(b, a)
 	}
 
 	m := make(map[T]bool)

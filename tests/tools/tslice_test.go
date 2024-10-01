@@ -4,12 +4,12 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/bbfh-dev/go-tools/tools"
+	"github.com/bbfh-dev/go-tools/tools/tslice"
 	"gotest.tools/assert"
 )
 
 func sortedDiff(a, b []int) []int {
-	diff := tools.SlicesDiff(a, b)
+	diff := tslice.Diff(a, b)
 	sort.Ints(diff)
 	return diff
 }
