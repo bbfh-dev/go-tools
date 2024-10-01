@@ -55,7 +55,7 @@ func TestWriteTuxleString(t *testing.T) {
 	assert.NilError(t, err)
 
 	reader := bufio.NewReader(&buf)
-	result, err := tbin.TuxleString(*reader)
+	result, err := tbin.TuxleString(reader)
 	assert.NilError(t, err)
 	assert.Equal(t, result, "Hello World!\x00")
 }
