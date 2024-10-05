@@ -11,9 +11,7 @@ func Assert(condition bool, message string) {
 		return
 	}
 
-	tlog.Error(
-		"ASSERTION FAILED: %s\n[This means that the program reached a state it should have never reached]",
-		message,
-	)
+	tlog.Error("[ The program reached a state it should have never reached ]")
+	tlog.Error("ASSERTION FAILED: %s\n", message)
 	os.Exit(1)
 }
