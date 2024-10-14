@@ -70,3 +70,37 @@ func TestWriteTuxleString(t *testing.T) {
 	_, err = reader.ReadByte()
 	assert.ErrorType(t, err, io.EOF)
 }
+
+func TestReader(test *testing.T) {
+	var buffer bytes.Buffer
+
+	err := tbin.WriteTuxleString(&buffer, "Hello World!")
+	assert.NilError(test, err)
+
+	err = tbin.WriteUint8(&buffer, 69)
+	assert.NilError(test, err)
+
+	err = tbin.WriteUint16(&buffer, 420)
+	assert.NilError(test, err)
+
+	err = tbin.WriteInt32(&buffer, 69)
+	assert.NilError(test, err)
+
+	err = tbin.WriteInt64(&buffer, 420)
+	assert.NilError(test, err)
+
+	var reader = tbin.NewReader(bufio.NewReader(&buffer))
+	var a string
+	var b uint8
+	var c uint16
+	var d int32
+	var e int64
+
+	assert.NilError(test, reader.TuxleString(&a).Uint8(&b).Uint16(&c).Int32(&d).Int64(&e).Error())
+	assert.DeepEqual(test, a, "Hello World!")
+	assert.Equal(test, b, uint8(69))
+	assert.Equal(test, c, uint16(420))
+	assert.Equal(test, d, int32(69))
+	assert.Equal(test, e, int64(420))
+	assert.Equal(test, len(buffer.Bytes()), 0)
+}
