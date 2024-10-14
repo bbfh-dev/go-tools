@@ -18,7 +18,7 @@ func Join(errs ...error) error {
 		return nil
 	}
 
-	return fmt.Errorf("%d Errors occured:\n%s", len(messages), strings.Join(messages, ";\n"))
+	return fmt.Errorf("%d Error(s) occured:\n%s", len(messages), strings.Join(messages, ";\n"))
 }
 
 func Prefix(prefix string, err error) error {

@@ -13,8 +13,8 @@ func TestAnyErr(test *testing.T) {
 	var testErr = errors.New("Test")
 
 	assert.Equal(test, terr.Join(nil, nil, nil), nil)
-	assert.ErrorContains(test, terr.Join(nil, testErr), "Errors occured")
-	assert.ErrorContains(test, terr.Join(testErr), "Errors occured")
+	assert.ErrorContains(test, terr.Join(nil, testErr), "Error(s) occured")
+	assert.ErrorContains(test, terr.Join(testErr), "Error(s) occured")
 	assert.Equal(test, terr.Join(), nil)
 }
 
