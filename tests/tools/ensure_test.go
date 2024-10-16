@@ -24,4 +24,12 @@ func TestEnsure(test *testing.T) {
 	result = ""
 	ensure.MapContainsKey(in, "a")
 	assert.Equal(test, result, "")
+
+	result = ""
+	ensure.NotNil(nil, "Testing this!")
+	assert.Equal(test, result, fmt.Sprintf(ensure.NOT_NILL_FMT, "Testing this!"))
+
+	result = ""
+	ensure.NotNil(0, "Test")
+	assert.Equal(test, result, "")
 }
