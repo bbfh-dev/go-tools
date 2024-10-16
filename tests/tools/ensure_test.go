@@ -8,7 +8,7 @@ import (
 	"gotest.tools/assert"
 )
 
-func TestMapContainsKey(test *testing.T) {
+func TestEnsure(test *testing.T) {
 	previous := ensure.OnFail
 	test.Cleanup(func() { ensure.OnFail = previous })
 
