@@ -1,21 +1,26 @@
 package tbin
 
 import (
-	"bufio"
 	"fmt"
+	"io"
 	"reflect"
 
 	"github.com/bbfh-dev/go-tools/tools/terr"
 )
 
+type StringReader interface {
+	io.Reader
+	ReadString(delim byte) (string, error)
+}
+
 type Reader struct {
-	buffer *bufio.Reader
+	buffer StringReader
 	step   uint64
 	errs   []error
 }
 
 // Allows you to sequence reads of a buffer
-func NewReader(reader *bufio.Reader) *Reader {
+func NewReader(reader StringReader) *Reader {
 	return &Reader{
 		buffer: reader,
 		step:   0,
