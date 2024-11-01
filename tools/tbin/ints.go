@@ -54,3 +54,13 @@ func Uint64(reader io.Reader) (uint64, error) {
 	_, err := reader.Read(data)
 	return binary.BigEndian.Uint64(data), err
 }
+
+func CombineUint(high, low uint32) uint64 {
+	return (uint64(high) << 32) | uint64(low)
+}
+
+func SeparateUint(combined uint64) (uint32, uint32) {
+	high := uint32(combined >> 32)
+	low := uint32(combined & 0xFFFFFFFF) // Mask the lower 32 bits
+	return high, low
+}

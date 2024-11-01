@@ -40,3 +40,12 @@ func Int64(reader io.Reader) (int64, error) {
 	out, err := Uint64(reader)
 	return int64(out), err
 }
+
+func CombineInt(high, low int32) int64 {
+	return int64(CombineUint(uint32(high), uint32(low)))
+}
+
+func SeparateInt(combined int64) (int32, int32) {
+	high, low := SeparateUint(uint64(combined))
+	return int32(high), int32(low)
+}

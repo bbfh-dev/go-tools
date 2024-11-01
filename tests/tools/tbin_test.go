@@ -104,3 +104,22 @@ func TestReader(test *testing.T) {
 	assert.Equal(test, e, int64(420))
 	assert.Equal(test, len(buffer.Bytes()), 0)
 }
+
+func TestCombineInt(test *testing.T) {
+	assert.DeepEqual(
+		test,
+		tbin.CombineUint(uint32(0x12345678), uint32(0x9ABCDEF0)),
+		uint64(0x123456789ABCDEF0),
+	)
+	assert.DeepEqual(test, tbin.CombineUint(69, 420), uint64(296352743844))
+}
+
+func TestSeparateInt(test *testing.T) {
+	h, l := tbin.SeparateUint(296352743844)
+	assert.Equal(test, h, uint32(69))
+	assert.Equal(test, l, uint32(420))
+
+	h, l = tbin.SeparateUint(0x123456789ABCDEF0)
+	assert.Equal(test, h, uint32(0x12345678))
+	assert.Equal(test, l, uint32(0x9ABCDEF0))
+}
